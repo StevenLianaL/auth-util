@@ -4,6 +4,7 @@ certifi==2020.12.5
 cffi==1.14.4
 chardet==4.0.0
 colorama==0.4.4
+cryptography==3.3.1
 docutils==0.16
 idna==2.10
 keyring==22.0.0
@@ -19,7 +20,7 @@ requests==2.25.1
 requests-toolbelt==0.9.1
 rfc3986==1.4.0
 six==1.15.0
-starlette==0.13.6
+starlette==0.14.1
 tqdm==4.56.0
 twine==3.3.0
 urllib3==1.26.2
