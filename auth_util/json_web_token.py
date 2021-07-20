@@ -17,7 +17,7 @@ class JwtManager(object):
     JWT_PRIVATE_KEY: Optional[str] = None
 
     JWT_EXPIRE: timedelta = timedelta(hours=24)
-    JWT_AUTH_HEADER_PREFIX: str = 'JWT'
+    JWT_AUTH_HEADER_PREFIX: str = ''
 
     def __post_init__(self):
         if self.JWT_ALGORITHM == 'RS256':
