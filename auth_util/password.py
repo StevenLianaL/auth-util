@@ -8,9 +8,9 @@ class PasswordManager(object):
     """schemes in (sha256_crypt,md5_crypt,ldap_salted_md5,des_crypt,bcrypt), can read passlib"""
     key: str = "k"
     scheme: str = 'sha256_crypt'
+    prefix = ''
 
     def __post_init__(self):
-        self.prefix = f'{self.key}_{self.scheme}_'
         self.pwd_context = CryptContext(schemes=[self.scheme], deprecated="auto")
 
     def generate_password(self, raw: str):
