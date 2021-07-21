@@ -1,6 +1,6 @@
 import jwt
-from starlette.exceptions import HTTPException
 from starlette.requests import Request
+from starlette.responses import JSONResponse
 from starlette.types import ASGIApp, Scope, Receive, Send
 
 from auth_util import JwtManager
@@ -35,9 +35,18 @@ class JwtMiddleware:
                         scope[self.jwt_payload_key] = payload
                         scope[self.jwt_key] = token
                     except jwt.exceptions.DecodeError:
-                        raise HTTPException(status_code=401, detail='jwt decode error')
+                        await JSONResponse(status_code=401, content={
+                            'detail': 'jwt decode error',
+                        })(scope, receive, send)
+                        return
                     except jwt.exceptions.ExpiredSignatureError:
-                        raise HTTPException(status_code=401, detail='jwt expired')
+                        await JSONResponse(status_code=401, content={
+                            'detail': 'jwt expired',
+                        })(scope, receive, send)
+                        return
                 else:
-                    raise HTTPException(status_code=401, detail='without jwt')
+                    await JSONResponse(status_code=401, content={
+                        'detail': 'without jwt',
+                    })(scope, receive, send)
+                    return
         await self.app(scope, receive, send)
