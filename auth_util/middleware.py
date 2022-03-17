@@ -8,6 +8,7 @@ from auth_util import JwtManager
 
 class JwtMiddleware:
     """Validate jwt and add user to scope"""
+    not_validate_prefix = []
     not_validate_suffix = ['docs', 'openapi.json', 'login', 'register']
     jwt_manager = JwtManager()
     jwt_header = 'jwt'
@@ -25,7 +26,7 @@ class JwtMiddleware:
             pass
         else:
             path = request.url.path[1:].split('/')
-            if path[-1] in self.not_validate_suffix:
+            if path[0] in self.not_validate_prefix or path[-1] in self.not_validate_suffix:
                 pass
             else:
                 token = request.headers.get(self.jwt_header, '')
