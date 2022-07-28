@@ -19,6 +19,9 @@ class JwtMiddleware:
         self.app = app
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send):
+        if scope["type"] != "http":  # work for websocket
+            await self.app(scope, receive, send)
+            return
         # prepare data
         request = Request(scope, receive=receive)
 

@@ -6,6 +6,7 @@
 2. jwt 生成和编解码
 3. jwt middleware
 ## Version
+- 0.0.8 JwtMiddleware can work with websocket
 - 0.0.7 add not validate prefix to middleware
 - 0.0.6 fix middleware error
 - 0.0.5 remove default value
