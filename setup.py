@@ -8,7 +8,7 @@ with open("requirements.txt", "r", encoding='utf8') as fh:
 
 setuptools.setup(
     name="auth-util",
-    version="0.0.8",
+    version="0.0.9",
     author="Steven Wang",
     author_email="brightstar8284@icloud.com",
     description="Password and jwt manager",
